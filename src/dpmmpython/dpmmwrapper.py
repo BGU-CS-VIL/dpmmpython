@@ -4,10 +4,6 @@ from julia import DPMMSubClusters
 import numpy as np
 
 
-def install():
-    pass
-
-
 class DPMMPython:
     """
      Wrapper for the DPMMSubCluster Julia package
@@ -70,7 +66,6 @@ class DPMMPython:
         """
         return DPMMSubClusters.cluster_statistics(points,labels,clusters)[0]
 
-
     @staticmethod
     def add_procs(procs_count):
         j = julia.Julia()
@@ -80,20 +75,31 @@ class DPMMPython:
         j.eval('@everywhere using LinearAlgebra')
         j.eval('@everywhere BLAS.set_num_threads(2)')
 
-
-
-
-
+    
+    @staticmethod
+    def generate_gaussian_data(sample_count,dim,components,var):
+        '''
+        Wrapper for DPMMSubClusters cluster statistics
+        :param sample_count: how much of samples
+        :param dim: samples dimension
+        :param components: number of components
+        :param var: variance between componenets means
+        :return: (data, gt)
+        '''
+        data = DPMMSubClusters.generate_gaussian_data(sample_count, dim, components, var)
+        gt =  data[1]
+        data = data[0]
+        return data,gt
 
 
 
 if __name__ == "__main__":
     j = julia.Julia()
-    data = DPMMSubClusters.generate_gaussian_data(10000, 2, 10, 100.0)
+    data = DPMMPython.generate_gaussian_data(10000, 2, 10, 100.0)
     gt =  data[1]
     data = data[0]
-    prior = DPMMSubWrapper.create_prior(2, 0, 1, 1, 1)
-    labels,_,sub_labels= DPMMSubWrapper.fit(data,100,prior = prior,verbose = True, gt = gt)
+    prior = DPMMPython.create_prior(2, 0, 1, 1, 1)
+    labels,_,sub_labels= DPMMPython.fit(data,100,prior = prior,verbose = True, gt = gt)
     prior = 0
     _ = 0
     print labels

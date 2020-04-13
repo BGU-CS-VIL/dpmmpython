@@ -1,2 +1,2 @@
 from .release import __version__
-from .dpmmwrapper import install
+from .install import install

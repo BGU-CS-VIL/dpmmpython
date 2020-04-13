@@ -1,6 +1,6 @@
 ## DPMMSubClusters
 
-This package is a wrapper for [DPMMSubWrapper.jl](https://github.com/BGU-CS-VIL/DPMMSubClusters.jl) Julia package.<br>
+This package is a wrapper for [DPMMSubClusters.jl](https://github.com/BGU-CS-VIL/DPMMSubClusters.jl) Julia package.<br>
 
 ### Installation
 
@@ -27,9 +27,7 @@ from dpmmpython.priors import niw
 import numpy as np
 
 data,gt = DPMMPython.generate_gaussian_data(10000, 2, 10, 100.0)
-prior = niw(1,np.zeros(2),4,np.eye(2)
-
-data,gt = DPMMPython.generate_gaussian_data(10000, 2, 10, 100.0)
+prior = niw(1,np.zeros(2),4,np.eye(2))
 labels,_,sub_labels= DPMMPython.fit(data,100,prior = prior,verbose = True, gt = gt)
 ```
 ```

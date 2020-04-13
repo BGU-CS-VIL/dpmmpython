@@ -3,6 +3,7 @@ import os
 import sys
 import wget
 import tarfile
+from julia.api import Julia
 
 
 
@@ -13,8 +14,8 @@ def get_julia_path_from_dir(base_dir):
         if os.path.isdir(os.path.join(julia_path,item)):
             julia_path = os.path.join(julia_path,item)
             break
-    julia_path = os.path.join(julia_path,'bin','julia')
-    return julia_path
+
+    return os.path.join(julia_path,'bin','julia'),os.path.join(julia_path,'bin')
 
 
 
@@ -33,12 +34,16 @@ def install(julia_download_path = 'https://julialang-s3.julialang.org/bin/linux/
     print("\nExtracting...")
     tar = tarfile.open(download_path,"r:gz")
     tar.extractall(julia_target_path)
-    julia_path = get_julia_path_from_dir(julia_target_path)
-    print("Configuring PyJulia")
-    julia.install(julia=julia_path)
-    j = julia.Julia()
-    j.eval('using Pkg')
-    j.eval('Pkg.add("DPMMSubClusters")')  
+    _, partial_path = get_julia_path_from_dir(julia_target_path)
+    os.environ["PATH"] += os.pathsep + partial_path
+    os.system("echo '# added by dpmmpython' >> ~/.bashrc")
+    os.system("echo 'export PATH=\""+partial_path+":$PATH\"' >> ~/.bashrc")
+    print("Configuring PyJulia")    
+    julia.install()    
+    print("Adding DPMMSubClusters package")  
+    from julia import Pkg
+    Pkg.add("DPMMSubClusters")
+    print("Please exit the shell and restart, before attempting to use the package") 
 
 
 if __name__ == "__main__":

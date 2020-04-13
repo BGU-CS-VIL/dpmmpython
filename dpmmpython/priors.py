@@ -1,3 +1,4 @@
+import julia
 from julia import DPMMSubClusters
 import numpy as np
 

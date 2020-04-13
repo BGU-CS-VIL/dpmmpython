@@ -31,7 +31,7 @@ with open(os.path.join(repo_root, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 
-ns = pyload(os.path.join(repo_root, "src", "dpmmpython", "release.py"))
+ns = pyload(os.path.join(repo_root,  "dpmmpython", "release.py"))
 version = ns["__version__"]
 
 
@@ -67,15 +67,15 @@ setup(name='dpmmpython',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
       ],
-      url='https://github.com/BGU-CS-VIL/DPMMSubClusters.jl',
+      url='https://github.com/BGU-CS-VIL/DPMMPython',
       project_urls={
           "Source": "https://github.com/BGU-CS-VIL/DPMMPython",
           "Tracker": "https://github.com/BGU-CS-VIL/issues",
           "Documentation": "https://bgu-cs-vil.github.io/DPMMSubClusters.jl/latest/",
       },
-      packages=find_packages("src"),
+      packages=find_packages(),
       install_requires=[
-          'julia','numpy'
+          'julia','numpy','wget'
       ],
       extras_require={
           # Update `ci/test-upload/tox.ini` when "test" is changed:

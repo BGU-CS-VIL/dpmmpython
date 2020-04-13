@@ -45,3 +45,6 @@ MANIFEST
 
 # Mac Os
 .DS_Store
+
+
+.vscode*

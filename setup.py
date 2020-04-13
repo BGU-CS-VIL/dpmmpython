@@ -31,7 +31,7 @@ with open(os.path.join(repo_root, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 
-ns = pyload(os.path.join(repo_root, "src", "julia", "release.py"))
+ns = pyload(os.path.join(repo_root, "src", "dpmmpython", "release.py"))
 version = ns["__version__"]
 
 

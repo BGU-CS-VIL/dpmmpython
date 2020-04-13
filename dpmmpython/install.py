@@ -39,7 +39,8 @@ def install(julia_download_path = 'https://julialang-s3.julialang.org/bin/linux/
     os.system("echo '# added by dpmmpython' >> ~/.bashrc")
     os.system("echo 'export PATH=\""+partial_path+":$PATH\"' >> ~/.bashrc")
     print("Configuring PyJulia")    
-    julia.install()    
+    julia.install()
+    julia.Julia(compiled_modules=False)
     print("Adding DPMMSubClusters package")  
     from julia import Pkg
     Pkg.add("DPMMSubClusters")

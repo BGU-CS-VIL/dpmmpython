@@ -95,9 +95,7 @@ class DPMMPython:
 
 if __name__ == "__main__":
     j = julia.Julia()
-    data = DPMMPython.generate_gaussian_data(10000, 2, 10, 100.0)
-    gt =  data[1]
-    data = data[0]
+    data,gt = DPMMPython.generate_gaussian_data(10000, 2, 10, 100.0)
     prior = DPMMPython.create_prior(2, 0, 1, 1, 1)
     labels,_,sub_labels= DPMMPython.fit(data,100,prior = prior,verbose = True, gt = gt)
     prior = 0

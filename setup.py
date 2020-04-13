@@ -74,8 +74,9 @@ setup(name='dpmmpython',
           "Documentation": "https://bgu-cs-vil.github.io/DPMMSubClusters.jl/latest/",
       },
       packages=find_packages("src"),
-      package_dir={"": "src"},
-      package_data={"julia": ["*.jl"]},
+      install_requires=[
+          'julia','numpy'
+      ],
       extras_require={
           # Update `ci/test-upload/tox.ini` when "test" is changed:
           "test": [

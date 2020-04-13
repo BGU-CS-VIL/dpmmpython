@@ -101,4 +101,4 @@ if __name__ == "__main__":
     labels,_,sub_labels= DPMMPython.fit(data,100,prior = prior,verbose = True, gt = gt)
     prior = 0
     _ = 0
-    print labels
+    print(labels)

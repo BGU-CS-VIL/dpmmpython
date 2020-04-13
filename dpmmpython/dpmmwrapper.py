@@ -2,6 +2,7 @@ import julia
 from priors import niw, multinomial
 from julia import DPMMSubClusters
 import numpy as np
+julia.Julia(compiled_modules=False)
 
 
 class DPMMPython:

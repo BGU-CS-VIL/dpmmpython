@@ -39,4 +39,23 @@ Iteration: 99 || Clusters count: 9 || Log posterior: -40607.39498126549 || Vi sc
 Iteration: 100 || Clusters count: 9 || Log posterior: -40607.39498126549 || Vi score: 0.11887067921133423 || NMI score: 0.9692247699387838 || Iter Time:0.010260820388793945 || Total time:0.5958950519561768
 ```
 
+You can modify the number of processes by using `DPMMPython.add_procs(procs_count)`, note that you can only scale it upwards.
 
+
+### Misc
+
+For any questions: dinari@post.bgu.ac.il
+
+Contributions, feature requests, suggestion etc.. are welcomed.
+
+If you use this code for your work, please cite the following:
+
+```
+@inproceedings{dinari2019distributed,
+  title={Distributed MCMC Inference in Dirichlet Process Mixture Models Using Julia},
+  author={Dinari, Or and Yu, Angel and Freifeld, Oren and Fisher III, John W},
+  booktitle={2019 19th IEEE/ACM International Symposium on Cluster, Cloud and Grid Computing (CCGRID)},
+  pages={518--525},
+  year={2019}
+}
+```

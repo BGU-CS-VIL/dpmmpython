@@ -75,7 +75,7 @@ setup(name='dpmmpython',
       },
       packages=find_packages(),
       install_requires=[
-          'julia','numpy','wget'
+          'julia','wget'
       ],
       extras_require={
           # Update `ci/test-upload/tox.ini` when "test" is changed:

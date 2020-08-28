@@ -1,6 +1,6 @@
 ## DPMMSubClusters
 
-This package is a wrapper for [DPMMSubClusters.jl](https://github.com/BGU-CS-VIL/DPMMSubClusters.jl) Julia package.<br>
+This package is a wrapper for the [DPMMSubClusters.jl](https://github.com/BGU-CS-VIL/DPMMSubClusters.jl) Julia package.<br>
 
 ### Installation
 

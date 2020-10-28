@@ -42,6 +42,10 @@ Iteration: 100 || Clusters count: 9 || Log posterior: -40607.39498126549 || Vi s
 
 You can modify the number of processes by using `DPMMPython.add_procs(procs_count)`, note that you can only scale it upwards.
 
+#### Additional Examples:
+[Clustering](https://nbviewer.jupyter.org/github/BGU-CS-VIL/dpmmpython/blob/master/examples/clustering_example.ipynb)
+[Multi-Process](https://nbviewer.jupyter.org/github/BGU-CS-VIL/dpmmpython/blob/master/examples/multi_process.ipynb)
+
 
 ### Misc
 

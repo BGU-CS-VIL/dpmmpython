@@ -44,6 +44,7 @@ You can modify the number of processes by using `DPMMPython.add_procs(procs_coun
 
 #### Additional Examples:
 [Clustering](https://nbviewer.jupyter.org/github/BGU-CS-VIL/dpmmpython/blob/master/examples/clustering_example.ipynb)
+<br>
 [Multi-Process](https://nbviewer.jupyter.org/github/BGU-CS-VIL/dpmmpython/blob/master/examples/multi_process.ipynb)
 
 

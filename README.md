@@ -28,8 +28,11 @@ pip install dpmmpython
 ```
 
 If you already have Julia installed, install [PyJulia](https://github.com/JuliaPy/pyjulia) and add the package `DPMMSubClusters` to your julia installation. <p>
+<p>
+Make sure Julia path is configured correctly, e.g. you should be able to run julia by typing `julia` from the terminal, unless configured properly, PyJulia wont work.
 
-**The next part only works with Ubuntu distributions at the moment!** <br>
+
+**Installation Shortcut for Ubuntu distributions** <br>
 If you do not have Julia installed, or wish to create a clean installation for the purpose of using this package. after installing (with pip), do the following:
 
 ```

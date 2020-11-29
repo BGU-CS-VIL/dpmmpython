@@ -6,7 +6,7 @@
 ## DPMMSubClusters
 
 This package is a Python wrapper for the [DPMMSubClusters.jl](https://github.com/BGU-CS-VIL/DPMMSubClusters.jl) Julia package.<br>
-<!---
+
 ### Motivation
 
 Working on a subset of 20K images from ImageNet, containing 16 classes, we have created embeddings using [SWAV](https://github.com/facebookresearch/swav), and reduced the dimension to 128 using PCA. We have compared our method with the popular scikit-learn [GMM](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html) and [DPGMM](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.BayesianGaussianMixture.html) with the following results:
@@ -14,13 +14,13 @@ Working on a subset of 20K images from ImageNet, containing 16 classes, we have 
   
 | Method                                              | Timing (sec) | NMI (higher is better) |
 |-----------------------------------------------------|--------------|------------------------|
-| *Scikit-learn's GMM* (using EM, and given the True K) | 1002         | 0.71                   |
-| *Scikit-learn's DPGMM*                                | 1062         | 0.65                   |
-| DPMMpython                                          | 36           | 0.76                   |
+| *Scikit-learn's GMM* (using EM, and given the True K) | 2523         | 0.695                   |
+| *Scikit-learn's DPGMM*                                | 6108         | 0.683                   | 
+| DPMMpython                                          | 475           | 0.705                   | 
 
 </p>
 As a sidenote for the above experiment, while our method could handle the complete ImageNet dataset (~1.2MIL and 1K classes), the other methods could not, at least not in a timley manner.
---->
+
 
 ### Installation
 

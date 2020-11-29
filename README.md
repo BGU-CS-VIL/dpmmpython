@@ -19,6 +19,7 @@ Working on a subset of 20K images from ImageNet, containing 17 classes, we have 
 | DPMMpython                                          | 36           | 0.76                   |
 
 </p>
+As a sidenote for the above experiment, while our method and handle the complete ImageNet dataset (~1.2MIL and 1K classes), the other methods could not, at least not in a timley manner.
 
 ### Installation
 

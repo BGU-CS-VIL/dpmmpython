@@ -9,7 +9,7 @@ This package is a Python wrapper for the [DPMMSubClusters.jl](https://github.com
 
 ### Motivation
 
-Working on a subset of 20K images from ImageNet, containing 17 classes, we have created embeddings using [SWAV](https://github.com/facebookresearch/swav), and reduced the dimension to 128 using PCA. We have compared our method with the popular scikit-learn [GMM](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html) and [DPGMM](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.BayesianGaussianMixture.html) with the following results:
+Working on a subset of 20K images from ImageNet, containing 16 classes, we have created embeddings using [SWAV](https://github.com/facebookresearch/swav), and reduced the dimension to 128 using PCA. We have compared our method with the popular scikit-learn [GMM](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html) and [DPGMM](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.BayesianGaussianMixture.html) with the following results:
 <p align="center">
   
 | Method                                              | Timing (sec) | NMI (higher is better) |

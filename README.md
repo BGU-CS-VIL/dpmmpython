@@ -11,13 +11,13 @@ This package is a Python wrapper for the [DPMMSubClusters.jl](https://github.com
 
 Working on a subset of 20K images from ImageNet, containing 17 classes, we have created embeddings using [SWAV](https://github.com/facebookresearch/swav), and reduced the dimension to 128 using PCA. We have compared our method with the popular scikit-learn [GMM](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html) and (DPGMM)[https://scikit-learn.org/stable/modules/generated/sklearn.mixture.BayesianGaussianMixture.html], with the following results:
 <p align="center">
-  <table>
+  
 | Method                                              | Timing (sec) | NMI (higher is better) |
 |-----------------------------------------------------|--------------|------------------------|
-| Scikit-learn's GMM (using EM, and given the True K) | 1002         | 0.71                   |
-| Scikit-learn's DPGMM                                | 1062         | 0.65                   |
+| *Scikit-learn's GMM* (using EM, and given the True K) | 1002         | 0.71                   |
+| *Scikit-learn's DPGMM*                                | 1062         | 0.65                   |
 | DPMMpython                                          | 36           | 0.76                   |
-</table>
+
 </p>
 
 ### Installation

@@ -55,7 +55,7 @@ class DPMMPython:
                                           verbose=verbose, burnout=burnout,
                                           gt=gt, outlier_weight=outlier_weight,
                                           outlier_params=outlier_params)
-        return results[0],results[1],results[-1]
+        return results[0],results[1],results[2:]
 
     @staticmethod
     def get_model_ll(points,labels,clusters):
@@ -93,6 +93,17 @@ class DPMMPython:
         data = data[0]
         return data,gt
 
+    @staticmethod
+    def predict(model,data):
+        '''
+        Given a DPMM Model (which is located in fit(...)[2][-1] for backwards compatibility),
+        predict the clusters for a data. The predict is using each cluster predictive posterior, 
+        in contrary to the model itself during training, which sample from the posterior. 
+        :params model: a DPMM (Julia object) model, returned from fit
+        :data: The data in which to predict, DxN (similar to the fit argument)
+        :return: labels
+        '''
+        return DPMMSubClusters.predict(model,data)
 
 
 if __name__ == "__main__":

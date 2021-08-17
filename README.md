@@ -51,7 +51,8 @@ import numpy as np
 
 data,gt = DPMMPython.generate_gaussian_data(10000, 2, 10, 100.0)
 prior = niw(1,np.zeros(2),4,np.eye(2))
-labels,_,sub_labels= DPMMPython.fit(data,100,prior = prior,verbose = True, gt = gt)
+labels,_,results= DPMMPython.fit(data,100,prior = prior,verbose = True, gt = gt)
+  
 ```
 ```
 Iteration: 1 || Clusters count: 1 || Log posterior: -71190.14226686998 || Vi score: 1.990707323192506 || NMI score: 6.69243345834295e-16 || Iter Time:0.004499912261962891 || Total time:0.004499912261962891
@@ -60,6 +61,9 @@ Iteration: 2 || Clusters count: 1 || Log posterior: -71190.14226686998 || Vi sco
 Iteration: 98 || Clusters count: 9 || Log posterior: -40607.39498126549 || Vi score: 0.11887067921133423 || NMI score: 0.9692247699387838 || Iter Time:0.015907764434814453 || Total time:0.5749104022979736
 Iteration: 99 || Clusters count: 9 || Log posterior: -40607.39498126549 || Vi score: 0.11887067921133423 || NMI score: 0.9692247699387838 || Iter Time:0.01072382926940918 || Total time:0.5856342315673828
 Iteration: 100 || Clusters count: 9 || Log posterior: -40607.39498126549 || Vi score: 0.11887067921133423 || NMI score: 0.9692247699387838 || Iter Time:0.010260820388793945 || Total time:0.5958950519561768
+```
+```
+predictions = DPMMPython.predict(results[-1],data)
 ```
 
 You can modify the number of processes by using `DPMMPython.add_procs(procs_count)`, note that you can only scale it upwards.

@@ -1,5 +1,5 @@
 import julia
-julia.Julia(compiled_modules=False)
+julia.install()
 from dpmmpython.priors import niw, multinomial
 from julia import DPMMSubClusters
 import numpy as np

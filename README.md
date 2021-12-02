@@ -5,7 +5,7 @@
 
 ## DPMMSubClusters
 
-This package is a Python wrapper for the [DPMMSubClusters.jl](https://github.com/BGU-CS-VIL/DPMMSubClusters.jl) Julia package.<br>
+This package is a Python wrapper for the [DPMMSubClusters.jl](https://github.com/BGU-CS-VIL/DPMMSubClusters.jl) Julia package and for the [DPMMSubClusters_CrossPlatforms](https://github.com/BGU-CS-VIL/DPMMSubClusters_CrossPlatforms) CUDA/C++ package.<br>
 
 ### Motivation
 
@@ -51,7 +51,7 @@ import numpy as np
 
 data,gt = DPMMPython.generate_gaussian_data(10000, 2, 10, 100.0)
 prior = niw(1,np.zeros(2),4,np.eye(2))
-labels,_,results= DPMMPython.fit(data,100,prior = prior,verbose = True, gt = gt)
+iter_count, nmi_result = DPMMPython.fit(data,100,prior = prior,verbose = True, gt = gt, gpu = False)
   
 ```
 ```

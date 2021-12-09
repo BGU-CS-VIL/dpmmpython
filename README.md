@@ -5,7 +5,7 @@
 
 ## DPMMSubClusters
 
-This package is a Python wrapper for the [DPMMSubClusters.jl](https://github.com/BGU-CS-VIL/DPMMSubClusters.jl) Julia package and for the [DPMMSubClusters_CrossPlatforms](https://github.com/BGU-CS-VIL/DPMMSubClusters_GPU) CUDA/C++ package.<br>
+This package is a Python wrapper for the [DPMMSubClusters.jl](https://github.com/BGU-CS-VIL/DPMMSubClusters.jl) Julia package and for the [DPMMSubClusters_GPU](https://github.com/BGU-CS-VIL/DPMMSubClusters_GPU) CUDA/C++ package.<br>
 
 ### Motivation
 

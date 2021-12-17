@@ -48,8 +48,6 @@ class DPMMPython:
         Note that directly working with the returned clusters can be problematic software displaying the workspace (such as PyCharm debugger).
         :return: labels, clusters, sublabels
         """
-        FULL_PATH_TO_PACKAGE_IN_WINDOWS = os.environ.get('DPMM_GPU_FULL_PATH_TO_PACKAGE_IN_WINDOWS')
-        FULL_PATH_TO_PACKAGE_IN_LINUX = os.environ.get('DPMM_GPU_FULL_PATH_TO_PACKAGE_IN_LINUX')
         if gpu == True:
             np.save("modelData.npy", np.swapaxes(data, 0, 1))
             modelParams = {'alpha': alpha,
@@ -66,10 +64,12 @@ class DPMMPython:
             with open('modelParams.json', 'w') as f:
                 json.dump(modelParams, f)
             if platform.system().startswith('Windows'):
+                FULL_PATH_TO_PACKAGE_IN_WINDOWS = os.environ.get('DPMM_GPU_FULL_PATH_TO_PACKAGE_IN_WINDOWS')
                 process = subprocess.Popen([FULL_PATH_TO_PACKAGE_IN_WINDOWS,
                                             "--prior_type=" + prior.get_type(), "--model_path=modelData.npy",
                                             "--params_path=modelParams.json", "--result_path=result.json"])
             elif platform.system().startswith("Linux"):
+                FULL_PATH_TO_PACKAGE_IN_LINUX = os.environ.get('DPMM_GPU_FULL_PATH_TO_PACKAGE_IN_LINUX')
                 process = subprocess.Popen(
                     [FULL_PATH_TO_PACKAGE_IN_LINUX,
                      "--prior_type=" + prior.get_type(), "--model_path=modelData.npy", "--params_path=modelParams.json",
@@ -86,7 +86,7 @@ class DPMMPython:
                 print(f'Error:{results_json["error"]}')
                 return [], []
             os.remove("result.json")
-            return results_json["iter_count"], results_json["nmi_score_history"]
+            return results_json["labels"], None, [results_json["weights"], results_json["iter_count"]]
         else:
             if prior == None:
                 results = DPMMSubClusters.fit(data, alpha, iters=iterations,
@@ -98,7 +98,7 @@ class DPMMPython:
                                               verbose=verbose, burnout=burnout,
                                               gt=gt, outlier_weight=outlier_weight,
                                               outlier_params=outlier_params)
-            return results[3], results[4]
+            return results[0],results[1],results[2:]
 
     @staticmethod
     def get_model_ll(points,labels,clusters):
@@ -154,4 +154,4 @@ if __name__ == "__main__":
     data,gt = DPMMPython.generate_gaussian_data(10000, 2, 10, 100.0)
     prior = niw(kappa = 1, mu = np.ones(2)*0, nu = 3, psi = np.eye(2))
     # labels_j,_,sub_labels= DPMMPython.fit(data, 100, prior = prior, verbose = True, gt = gt, gpu = False)
-    iter_count, nmi_result = DPMMPython.fit(data, 100, prior = prior, verbose = True, gt = gt, gpu = True)
+    labels_j,_,sub_labels = DPMMPython.fit(data, 100, prior = prior, verbose = True, gt = gt, gpu = True)

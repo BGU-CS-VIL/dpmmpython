@@ -51,7 +51,7 @@ import numpy as np
 
 data,gt = DPMMPython.generate_gaussian_data(10000, 2, 10, 100.0)
 prior = niw(1,np.zeros(2),4,np.eye(2))
-iter_count, nmi_result = DPMMPython.fit(data,100,prior = prior,verbose = True, gt = gt, gpu = False)
+labels,_,results = DPMMPython.fit(data,100,prior = prior,verbose = True, gt = gt, gpu = False)
   
 ```
 ```

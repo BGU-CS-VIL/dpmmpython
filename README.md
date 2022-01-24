@@ -39,8 +39,8 @@ If you do not have Julia installed, or wish to create a clean installation for t
 import dpmmpython
 dpmmpython.install()
 ```
-Optional arguments are `install(julia_download_path = 'https://julialang-s3.julialang.org/bin/linux/x64/1.4/julia-1.4.0-linux-x86_64.tar.gz', julia_target_path = None)`, where the former specify the julia download file, and the latter the installation path, if the installation path is not specified, `$HOME$/julia` will be used.<br>
-As the `install()` command edit your `.bashrc` path, before using the pacakge, the terminal should either be reset, or modify the current environment according to the julia path you specified (`$HOME$/julia/julia-1.4.0/bin` by default).
+Optional arguments are `install(julia_download_path = 'https://julialang-s3.julialang.org/bin/linux/x64/1.4/julia-1.4.0-linux-x86_64.tar.gz', julia_target_path = None)`, where the former specify the julia download file, and the latter the installation path, if the installation path is not specified, `$HOME/julia` will be used.<br>
+As the `install()` command edit your `.bashrc` path, before using the pacakge, the terminal should either be reset, or modify the current environment according to the julia path you specified (`$HOME/julia/julia-1.4.0/bin` by default).
 
 ### Usage Example:
 

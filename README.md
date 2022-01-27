@@ -74,8 +74,8 @@ You can modify the number of processes by using `DPMMPython.add_procs(procs_coun
 [Multi-Process](https://nbviewer.jupyter.org/github/BGU-CS-VIL/dpmmpython/blob/master/examples/multi_process.ipynb)
 
 
-#### Python 3.8
-Due to recent issue with the package used as interface between Julia and Python https://github.com/JuliaPy/pyjulia/issues/425 , there might be problems working with Python >= 3.8.
+#### Python 3.8/3.9
+If you are having problems with the above Python version, please update PyJulia and PyCall to the latest versions, this should fix it.
 
 ### Misc
 

@@ -3,7 +3,10 @@ julia.install()
 from dpmmpython.priors import niw, multinomial
 from julia import DPMMSubClusters
 import numpy as np
-
+import platform
+import subprocess
+import json
+import os
 
 
 class DPMMPython:
@@ -39,23 +42,63 @@ class DPMMPython:
     @staticmethod
     def fit(data,alpha, prior = None,
             iterations= 100, verbose = False,
-            burnout = 15, gt = None, outlier_weight = 0, outlier_params = None):
+            burnout=15, gt=None, outlier_weight=0, outlier_params=None, gpu=True, force_kernel = 2):
         """
         Wrapper for DPMMSubClusters fit, reffer to "https://bgu-cs-vil.github.io/DPMMSubClusters.jl/stable/usage/" for specification
         Note that directly working with the returned clusters can be problematic software displaying the workspace (such as PyCharm debugger).
         :return: labels, clusters, sublabels
         """
-        if prior == None:
-            results = DPMMSubClusters.fit(data,alpha, iters = iterations,
-                                          verbose = verbose, burnout = burnout,
-                                          gt = gt, outlier_weight = outlier_weight,
-                                          outlier_params = outlier_params)
+        if gpu == True:
+            np.save("modelData.npy", np.swapaxes(data, 0, 1))
+            modelParams = {'alpha': alpha,
+                           'iterations': iterations,
+                           'use_verbose': verbose,
+                           'burnout_period': burnout,
+                           'force_kernel': force_kernel,
+                           'outlier_mod': outlier_weight,
+                           'outlier_hyper_params': outlier_params,
+                           'hyper_params': prior.to_JSON()
+                           }
+            if gt is not None:
+                modelParams['gt'] = gt.tolist()
+            with open('modelParams.json', 'w') as f:
+                json.dump(modelParams, f)
+            if platform.system().startswith('Windows'):
+                FULL_PATH_TO_PACKAGE_IN_WINDOWS = os.environ.get('DPMM_GPU_FULL_PATH_TO_PACKAGE_IN_WINDOWS')
+                process = subprocess.Popen([FULL_PATH_TO_PACKAGE_IN_WINDOWS,
+                                            "--prior_type=" + prior.get_type(), "--model_path=modelData.npy",
+                                            "--params_path=modelParams.json", "--result_path=result.json"])
+            elif platform.system().startswith("Linux"):
+                FULL_PATH_TO_PACKAGE_IN_LINUX = os.environ.get('DPMM_GPU_FULL_PATH_TO_PACKAGE_IN_LINUX')
+                process = subprocess.Popen(
+                    [FULL_PATH_TO_PACKAGE_IN_LINUX,
+                     "--prior_type=" + prior.get_type(), "--model_path=modelData.npy", "--params_path=modelParams.json",
+                     "--result_path=result.json"])
+            else:
+                print(f'Not support {platform.system()} OS')
+            out, err = process.communicate()
+            errcode = process.returncode
+            process.kill()
+            process.terminate()
+            with open('result.json') as f:
+                results_json = json.load(f)
+            if "error" in results_json:
+                print(f'Error:{results_json["error"]}')
+                return [], []
+            os.remove("result.json")
+            return results_json["labels"], None, [results_json["weights"], results_json["iter_count"]]
         else:
-            results = DPMMSubClusters.fit(data, prior.to_julia_prior(), alpha, iters=iterations,
-                                          verbose=verbose, burnout=burnout,
-                                          gt=gt, outlier_weight=outlier_weight,
-                                          outlier_params=outlier_params)
-        return results[0],results[1],results[2:]
+            if prior == None:
+                results = DPMMSubClusters.fit(data, alpha, iters=iterations,
+                                              verbose=verbose, burnout=burnout,
+                                              gt=gt, outlier_weight=outlier_weight,
+                                              outlier_params=outlier_params)
+            else:
+                results = DPMMSubClusters.fit(data, prior.to_julia_prior(), alpha, iters=iterations,
+                                              verbose=verbose, burnout=burnout,
+                                              gt=gt, outlier_weight=outlier_weight,
+                                              outlier_params=outlier_params)
+            return results[0],results[1],results[2:]
 
     @staticmethod
     def get_model_ll(points,labels,clusters):
@@ -109,8 +152,6 @@ class DPMMPython:
 if __name__ == "__main__":
     j = julia.Julia()
     data,gt = DPMMPython.generate_gaussian_data(10000, 2, 10, 100.0)
-    prior = DPMMPython.create_prior(2, 0, 1, 1, 1)
-    labels,_,sub_labels= DPMMPython.fit(data,100,prior = prior,verbose = True, gt = gt)
-    prior = 0
-    _ = 0
-    print(labels)
+    prior = niw(kappa = 1, mu = np.ones(2)*0, nu = 3, psi = np.eye(2))
+    # labels_j,_,sub_labels= DPMMPython.fit(data, 100, prior = prior, verbose = True, gt = gt, gpu = False)
+    labels_j,_,sub_labels = DPMMPython.fit(data, 100, prior = prior, verbose = True, gt = gt, gpu = True)

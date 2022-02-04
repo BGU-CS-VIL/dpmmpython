@@ -23,6 +23,8 @@ Working on a subset of 100K images from ImageNet, containing 79 classes, we have
 
 ### Installation
 
+If you wish to use only the CPU version, you may skip all the GPU related steps.
+
 1. Install CUDA version 11.2 (or higher) from https://developer.nvidia.com/CUDA-downloads
 2. git clone https://github.com/BGU-CS-VIL/DPMMSubClusters_GPU
 3. Install Julia from: https://julialang.org/downloads/platform

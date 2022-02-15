@@ -87,6 +87,8 @@ The path is: <YOUR_PATH_TO_DPMMSubClusters_GPU>\DPMMSubClusters\build\Release
 ### Usage Example:
 
 ```
+from julia.api import Julia
+jl = Julia(compiled_modules=False)
 from dpmmpython.dpmmwrapper import DPMMPython
 from dpmmpython.priors import niw
 import numpy as np

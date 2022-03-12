@@ -91,6 +91,12 @@ The path is: <YOUR_PATH_TO_DPMMSubClusters_GPU>\DPMMSubClusters\build\Release
 
 <b>End of GPU Steps</b>
 
+## Precompiled Binaries -
+[Windows](https://drive.google.com/file/d/1gQE6BWSseOEBW3xFTuahXJPIZI16uwj7/view?usp=sharing) <br>
+[Linux](https://drive.google.com/file/d/1EWBqZG2jv4yH_O-BIwvDdn6gTJbF4mU4/view?usp=sharing)<br>
+Both binaries were compiled with CUDA 11.2, note that you still need to have cuda and cudnn installed in order to use these.
+
+
 ### Usage Example:
 
 ```

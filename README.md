@@ -16,7 +16,7 @@ Working on a subset of 100K images from ImageNet, containing 79 classes, we have
 |-----------------------------------------------------|--------------|------------------------|
 | *Scikit-learn's GMM* (using EM, and given the True K) | 2523         | 0.695                   |
 | *Scikit-learn's DPGMM*                                | 6108         | 0.683                   | 
-| DPMMpython                                          | 475           | 0.705                   | 
+| DPMMpython (CPU Version)                              | 475           | 0.705                   | 
 
 </p>
 

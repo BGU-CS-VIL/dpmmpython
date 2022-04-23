@@ -140,7 +140,7 @@ For any questions: dinari@post.bgu.ac.il
 
 Contributions, feature requests, suggestion etc.. are welcomed.
 
-If you use this code for your work, please cite the following:
+If you use this code for your work, please cite the following works:
 
 ```
 @inproceedings{dinari2019distributed,
@@ -149,5 +149,12 @@ If you use this code for your work, please cite the following:
   booktitle={2019 19th IEEE/ACM International Symposium on Cluster, Cloud and Grid Computing (CCGRID)},
   pages={518--525},
   year={2019}
+}
+
+@article{dinari2022cpu,
+  title={CPU-and GPU-based Distributed Sampling in Dirichlet Process Mixtures for Large-scale Analysis},
+  author={Dinari, Or and Zamir, Raz and Fisher III, John W and Freifeld, Oren},
+  journal={arXiv preprint arXiv:2204.08988},
+  year={2022}
 }
 ```

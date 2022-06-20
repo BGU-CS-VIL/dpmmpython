@@ -120,7 +120,7 @@ Iteration: 99 || Clusters count: 9 || Log posterior: -40607.39498126549 || Vi sc
 Iteration: 100 || Clusters count: 9 || Log posterior: -40607.39498126549 || Vi score: 0.11887067921133423 || NMI score: 0.9692247699387838 || Iter Time:0.010260820388793945 || Total time:0.5958950519561768
 ```
 ```
-predictions = DPMMPython.predict(results[-1],data)
+predictions, probabilities = DPMMPython.predict(results[-1],data)
 ```
 
 You can modify the number of processes by using `DPMMPython.add_procs(procs_count)`, note that you can only scale it upwards.

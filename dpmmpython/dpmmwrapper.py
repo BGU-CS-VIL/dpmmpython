@@ -42,7 +42,7 @@ class DPMMPython:
     @staticmethod
     def fit(data,alpha, prior = None,
             iterations= 100, verbose = False,
-            burnout=15, gt=None, outlier_weight=0, outlier_params=None, gpu=False, force_kernel = 2):
+            burnout=15, gt=None, outlier_weight=0, outlier_params=None,smart_splits=False, gpu=False, force_kernel = 2):
         """
         Wrapper for DPMMSubClusters fit, reffer to "https://bgu-cs-vil.github.io/DPMMSubClusters.jl/stable/usage/" for specification
         Note that directly working with the returned clusters can be problematic software displaying the workspace (such as PyCharm debugger).
@@ -92,12 +92,14 @@ class DPMMPython:
                 results = DPMMSubClusters.fit(data, alpha, iters=iterations,
                                               verbose=verbose, burnout=burnout,
                                               gt=gt, outlier_weight=outlier_weight,
-                                              outlier_params=outlier_params)
+                                              outlier_params=outlier_params,
+                                              smart_splits=smart_splits)
             else:
                 results = DPMMSubClusters.fit(data, prior.to_julia_prior(), alpha, iters=iterations,
                                               verbose=verbose, burnout=burnout,
                                               gt=gt, outlier_weight=outlier_weight,
-                                              outlier_params=outlier_params)
+                                              outlier_params=outlier_params,
+                                              smart_splits=smart_splits)
             return results[0],results[1],results[2:]
 
     @staticmethod

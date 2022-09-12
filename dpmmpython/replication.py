@@ -91,13 +91,13 @@ class DPMMPython:
      """
 
     @staticmethod
-    def create_niw_prior(dim, mean_prior, mean_str, cov_prior, cov_str):
+    def create_niw_prior(dim, cov_prior, cov_str, mean_prior = 0 , kappa = 1):
         """
         Creates a gaussian prior, if cov_prior is a scalar, then creates an isotropic prior scaled to that, if its a matrix
         uses it as covariance
         :param dim: data dimension
         :param mean_prior: if a scalar, will create a vector scaled to that, if its a vector then use it as the prior mean
-        :param mean_str: prior mean psuedo count
+        :param kappa: prior mean psuedo count
         :param cov_prior: if a scalar, will create an isotropic covariance scaled to cov_prior, if a matrix will use it as
         the covariance.
         :param cov_str: prior covariance psuedo counts
@@ -112,7 +112,7 @@ class DPMMPython:
             prior_covariance = np.eye(dim) * cov_prior
         else:
             prior_covariance = cov_prior
-        prior = niw(mean_str, prior_mean, dim + cov_str, prior_covariance)
+        prior = niw(kappa, prior_mean, dim + cov_str, prior_covariance)
         return prior
 
     @staticmethod
@@ -294,7 +294,7 @@ def run_test(n_samples, d, k, numIter=10, max_iter=100, model='',
     data, gt = get_data(n_samples, d, k)
     if prior == None:
         if prior_niw_if_none:
-            prior = DPMMPython.create_niw_prior(d, 0, 1, 1, 1)
+            prior = DPMMPython.create_niw_prior(d, 1, 1, 0, 1)
         else:
             prior = DPMMPython.create_mnmm_prior(1, d)
 
@@ -482,12 +482,12 @@ def run(is_short):
         repeats = 10
 
     run_test(60000, D, K, repeats, max_iter=300, model='mnist', get_data=generate_mnist_data,
-             prior=DPMMPython.create_niw_prior(D, 0, 1, 1.46, 456.8))
+             prior=DPMMPython.create_niw_prior(D, 1.46, 456.8))
     if not IS_SHORT:
         run_test(60000, D, K, repeats, max_iter=200, model='fashion_mnist', get_data=generate_fashion_mnist_data,
-                 prior=DPMMPython.create_niw_prior(D, 0, 1, 1.46, 456.8))
+                 prior=DPMMPython.create_niw_prior(D, 1.46, 456.8))
         run_test(125000, 64, 100, repeats, max_iter=200, model='imagenet64', get_data=generate_imagenet64_data,
-                 prior=DPMMPython.create_niw_prior(64, 0, 1, 0.177459, 720.139))
+                 prior=DPMMPython.create_niw_prior(64, 0.177459, 720.139))
         run_test(11314, 20000, 20, repeats, max_iter=100, model='20newsgroups10k', prior_niw_if_none=False,
                  get_data=generate_20newsgroups20k_data, force_kernel=2, run_sklearn=False)
     print(f'Complete test: {datetime.now()}')

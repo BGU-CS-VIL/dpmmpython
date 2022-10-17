@@ -7,6 +7,10 @@
 
 This package is a Python wrapper for the [DPMMSubClusters.jl](https://github.com/BGU-CS-VIL/DPMMSubClusters.jl) Julia package and for the [DPMMSubClusters_GPU](https://github.com/BGU-CS-VIL/DPMMSubClusters_GPU) CUDA/C++ package.<br>
 
+The package is useful for fitting, in a scalable way, a mixture model with an unknown number of components. We currently support either Multinomial or Gaussian components, but additional types of components can be easily added, as long as they belong to an exponential family. 
+
+
+
 ### Motivation
 
 Working on a subset of 100K images from ImageNet, containing 79 classes, we have created embeddings using [SWAV](https://github.com/facebookresearch/swav), and reduced the dimension to 128 using PCA. We have compared our method with the popular scikit-learn [GMM](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html) and [DPGMM](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.BayesianGaussianMixture.html) with the following results:
